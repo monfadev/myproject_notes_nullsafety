@@ -44,7 +44,7 @@ class _ProfileAnimationImplementationState
                     decoration: BoxDecoration(
                         color: Color(0xFFFBFCFD),
                         image: DecorationImage(
-                          image: AssetImage("assets/images/image_profile.png"),
+                          image: AssetImage("assets/images/monfadev.png"),
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -63,7 +63,7 @@ class _ProfileAnimationImplementationState
                   decoration: BoxDecoration(
                       color: Color(0xFFFBFCFD),
                       image: DecorationImage(
-                        image: AssetImage("assets/images/image_profile.png"),
+                        image: AssetImage("assets/images/monfadev.png"),
                       ),
                       boxShadow: [
                         BoxShadow(

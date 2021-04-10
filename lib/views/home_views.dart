@@ -148,7 +148,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         child: Container(
                           margin: EdgeInsets.only(top: 15.0, right: 26.0),
                           height: MediaQuery.of(context).size.height / 11,
-                          width: MediaQuery.of(context).size.height / 3,
+                          width: MediaQuery.of(context).size.height / 4,
                           decoration: BoxDecoration(
                               color: Color(0xFF1D2A64),
                               borderRadius: BorderRadius.circular(18.0)),
@@ -179,12 +179,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         ),
                       ),
                     ],
-                  ),
-                  Positioned(
-                    top: MediaQuery.of(context).size.height / 29,
-                    left: MediaQuery.of(context).size.height / 7.5,
-                    child: Container(
-                        child: Image.asset("assets/images/image_tasks.png")),
                   ),
                 ],
               ),
