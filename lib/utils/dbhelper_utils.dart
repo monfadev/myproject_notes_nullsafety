@@ -110,4 +110,13 @@ class DatabaseHelper {
     Database db = await _databaseHelper.database;
     return await db.query("$notesTable");
   }
+
+  Future<List<MyNotes>> searchTitle(String keyword) async {
+    final db = await _databaseHelper.database;
+    List<Map<String, dynamic>> allRows = await db
+        .query("notes_table", where: 'title LIKE ?', whereArgs: ['%$keyword%']);
+    List<MyNotes> notes =
+        allRows.map((notes) => MyNotes.map(notes)).toList();
+    return notes;
+  }
 }

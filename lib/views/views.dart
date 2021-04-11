@@ -8,3 +8,5 @@ import 'package:myproject_notes/utils/utils.dart';
 
 part 'home_views.dart';
 part 'addnotes_views.dart';
+part 'search_list.dart';
+part 'search_views.dart';

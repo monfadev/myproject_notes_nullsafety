@@ -11,6 +11,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<MyNotes> noteList;
   int count = 0;
+  String keyword;
 
   //Method cek query
   void queryall() async {
@@ -113,16 +114,21 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(18.0)),
                 child: Stack(
                   children: [
-                    TextField(
-                      controller: searchtext,
-                      decoration: InputDecoration(
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          hintText: "Search by title",
-                          hintStyle: GoogleFonts.lato(
-                              color: Color(0xFFD2D9DF), fontSize: 16.0)),
-                      style: GoogleFonts.lato(
-                          color: Color(0xFF1D2A64), fontSize: 16.0),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchPage()));
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Search by title",
+                          style: GoogleFonts.lato(
+                              color: Color(0xFFD2D9DF), fontSize: 16.0),
+                        ),
+                      ),
                     ),
                     Positioned(
                       right: 0,
@@ -144,38 +150,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      GestureDetector(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 15.0, right: 26.0),
-                          height: MediaQuery.of(context).size.height / 11,
-                          width: MediaQuery.of(context).size.height / 4,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF1D2A64),
-                              borderRadius: BorderRadius.circular(18.0)),
-                          child: FutureBuilder(
-                            future: databaseHelper.getCount(),
-                            builder: (context, snapshot) {
-                              print(snapshot.data);
-                              if (snapshot.data == null) {
-                                return Center(
-                                    child: Text("0" + " Notes",
-                                        style: GoogleFonts.lato(
-                                          color: Colors.white,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.w500,
-                                        )));
-                              } else {
-                                return Center(
-                                    child: Text(
-                                        snapshot.data.toString() + " Notes",
-                                        style: GoogleFonts.lato(
-                                          color: Colors.white,
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.w500,
-                                        )));
-                              }
-                            },
-                          ),
+                      Container(
+                        margin: EdgeInsets.only(top: 15.0, right: 26.0),
+                        height: MediaQuery.of(context).size.height / 11,
+                        width: MediaQuery.of(context).size.height / 4,
+                        decoration: BoxDecoration(
+                            color: Color(0xFF1D2A64),
+                            borderRadius: BorderRadius.circular(18.0)),
+                        child: FutureBuilder(
+                          future: databaseHelper.getCount(),
+                          builder: (context, snapshot) {
+                            print(snapshot.data);
+                            if (snapshot.data == null) {
+                              return Center(
+                                  child: Text("0" + " Notes",
+                                      style: GoogleFonts.lato(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.w500,
+                                      )));
+                            } else {
+                              return Center(
+                                  child:
+                                      Text(snapshot.data.toString() + " Notes",
+                                          style: GoogleFonts.lato(
+                                            color: Colors.white,
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w500,
+                                          )));
+                            }
+                          },
                         ),
                       ),
                     ],
@@ -197,7 +201,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             //fungsi dengan widget future
             // SliverFillRemaining(
             //   child: FutureBuilder(
-            //     // future: database.getNotes(),
+            //     // future: databaseHelper.getNoteList(),
             //     builder: (context, snapshot) {
             //       print(snapshot.data);
             //       if (snapshot.data == null) {
@@ -205,7 +209,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             //           child: CircularProgressIndicator(),
             //         );
             //       } else {
-            //         return ListMyNotes(notedata: snapshot.data);
+            //         return SliverList(
+            //           delegate: SliverChildBuilderDelegate(
+            //               (BuildContext context, int index) {
+            //             return Container(
+            //               padding: EdgeInsets.symmetric(
+            //                   horizontal: 30.0, vertical: 7.0),
+            //               child: ButtonAnimationImplementation(
+            //                 title: noteList[index].title,
+            //                 body: noteList[index].body,
+            //                 tanggal: noteList[index].date,
+            //                 onTab: () {
+            //                   ButtonAnimation.disableButton
+            //                       ? print("Disable true")
+            //                       : print("I'm pressed for edit");
+            //                   navigateToDetail(noteList[index], "Edit Note");
+            //                 },
+            //               ),
+            //             );
+            //           }, childCount: count),
+            //         );
             //       }
             //     },
             //   ),
