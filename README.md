@@ -1,16 +1,32 @@
-# myproject_notes
+# My Notes
 
-A new Flutter project.
+> Note your daily act now!
 
-## Getting Started
+<p><img  src="https://i.ibb.co/xf30CBk/Frame-2.png"/></p>
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Todo Apps
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Techstack
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Dart
+- Flutter SDK V2 (Null Safety)
+- Pub.dev (SQFLite)
+
+## Installing
+
+- git clone 
+- flutter packages get
+- flutter run
+
+## Release History
+
+- 1.0.0+1
+  - CHANGE: APK release
+
+## Credit
+
+monfauzi – [@monfadev](https://instagram.com/monfadev) – mfaauzii@gmail.com
+
+[https://github.com/monfauzi](https://github.com/monfauzi/)
