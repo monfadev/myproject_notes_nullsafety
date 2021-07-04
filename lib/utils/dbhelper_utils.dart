@@ -1,8 +1,8 @@
 part of 'utils.dart';
 
 class DatabaseHelper {
-  static DatabaseHelper _databaseHelper; // Singleton DatabaseHelper
-  static Database _database; // Singleton Database
+  static DatabaseHelper? _databaseHelper; // Singleton DatabaseHelper
+  static Database? _database; // Singleton Database
 
   String notesTable = 'notes_table';
   String colId = 'id';
@@ -17,14 +17,14 @@ class DatabaseHelper {
       _databaseHelper = DatabaseHelper
           ._createInstance(); // This is executed only once, singleton object
     }
-    return _databaseHelper;
+    return _databaseHelper!;
   }
 
   Future<Database> get database async {
     if (_database == null) {
       _database = await initializeDatabase();
     }
-    return _database;
+    return _database!;
   }
 
   Future<Database> initializeDatabase() async {
@@ -61,7 +61,7 @@ class DatabaseHelper {
     int count =
         noteMapList.length; // Count the number of map entries in db table
 
-    List<MyNotes> noteList = List<MyNotes>();
+    List<MyNotes> noteList = [];
     // For loop to create a 'Note List' from a 'Map List'
     for (int i = 0; i < count; i++) {
       noteList.add(MyNotes.map(noteMapList[i]));
@@ -99,24 +99,23 @@ class DatabaseHelper {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
         await db.rawQuery('SELECT COUNT (*) from $notesTable');
-    int result = Sqflite.firstIntValue(x);
-    return result;
+    int? result = Sqflite.firstIntValue(x);
+    return result!;
   }
 
   // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
 
   //cek query
   Future<List<Map<String, dynamic>>> queryall() async {
-    Database db = await _databaseHelper.database;
+    Database db = await _databaseHelper!.database;
     return await db.query("$notesTable");
   }
 
-  Future<List<MyNotes>> searchTitle(String keyword) async {
-    final db = await _databaseHelper.database;
+  Future<List<MyNotes>> searchTitle(String? keyword) async {
+    final db = await _databaseHelper!.database;
     List<Map<String, dynamic>> allRows = await db
         .query("notes_table", where: 'title LIKE ?', whereArgs: ['%$keyword%']);
-    List<MyNotes> notes =
-        allRows.map((notes) => MyNotes.map(notes)).toList();
+    List<MyNotes> notes = allRows.map((notes) => MyNotes.map(notes)).toList();
     return notes;
   }
 }

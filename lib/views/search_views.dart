@@ -1,7 +1,7 @@
 part of 'views.dart';
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
+  SearchPage({Key? key}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -9,7 +9,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   DatabaseHelper databaseHelper = DatabaseHelper();
-  String keyword;
+  String? keyword;
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +62,15 @@ class _SearchPageState extends State<SearchPage> {
                     ],
                   ),
                 ),
+                //> SEARCH
                 FutureBuilder(
                   future: databaseHelper.searchTitle(keyword),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasError) print('error');
+
                     return snapshot.hasData
                         ? SearchList(snapshot.data)
-                        : new Center(
+                        : Center(
                             child: Text("Don't Have Notes..."),
                           );
                   },

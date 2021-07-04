@@ -1,11 +1,11 @@
 part of 'components.dart';
 
 class ButtonAnimation extends StatefulWidget {
-  final Widget child;
-  final int delayTime;
+  final Widget? child;
+  final int? delayTime;
   static bool disableButton = false;
 
-  const ButtonAnimation({Key key, this.delayTime, this.child})
+  const ButtonAnimation({Key? key, this.delayTime, this.child})
       : super(key: key);
   @override
   _ButtonAnimationState createState() => _ButtonAnimationState();
@@ -13,7 +13,7 @@ class ButtonAnimation extends StatefulWidget {
 
 class _ButtonAnimationState extends State<ButtonAnimation>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _ButtonAnimationState extends State<ButtonAnimation>
       duration: Duration(milliseconds: 200),
     );
 
-    _controller.addStatusListener((status) {
+    _controller!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
           ButtonAnimation.disableButton = false;
@@ -36,22 +36,22 @@ class _ButtonAnimationState extends State<ButtonAnimation>
     });
 
     if (widget.delayTime == null) {
-      _controller.forward();
+      _controller!.forward();
     } else {
-      Timer(Duration(milliseconds: widget.delayTime), () {
-        _controller.forward();
+      Timer(Duration(milliseconds: widget.delayTime!), () {
+        _controller!.forward();
       });
     }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return widget.child!;
   }
 }

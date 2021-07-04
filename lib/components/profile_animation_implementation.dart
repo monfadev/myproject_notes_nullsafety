@@ -1,9 +1,9 @@
 part of 'components.dart';
 
 class ProfileAnimationImplementation extends StatefulWidget {
-  final Function onTab;
+  final Function() onTab;
 
-  const ProfileAnimationImplementation({Key key, this.onTab}) : super(key: key);
+  const ProfileAnimationImplementation({Key? key, required this.onTab}) : super(key: key);
   @override
   _ProfileAnimationImplementationState createState() =>
       _ProfileAnimationImplementationState();

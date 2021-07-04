@@ -1,8 +1,8 @@
 class MyNotes {
-  int idModels;
-  String titleModels;
-  String bodyModels;
-  String createDateModels;
+  int? idModels;
+  String? titleModels;
+  String? bodyModels;
+  String? createDateModels;
 
   //Constructor
   MyNotes(
@@ -12,10 +12,10 @@ class MyNotes {
       this.createDateModels});
 
   //getter
-  int get id => idModels;
-  String get title => titleModels; // I mean get title is a create key database
-  String get body => bodyModels;
-  String get date => createDateModels;
+  int? get id => idModels; //why idModels dont have nagasi? because idModels add by SQFLITE
+  String get title => titleModels!; // I mean get title is a create key database
+  String get body => bodyModels!;
+  String get date => createDateModels!;
 
   // Extract a Note object from a Map object
   MyNotes.map(dynamic object) {

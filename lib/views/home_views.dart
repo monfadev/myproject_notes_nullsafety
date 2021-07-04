@@ -9,9 +9,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   //Deklarasi
   TextEditingController searchtext = TextEditingController();
   DatabaseHelper databaseHelper = DatabaseHelper();
-  List<MyNotes> noteList;
+  List<MyNotes>? noteList;
   int count = 0;
-  String keyword;
+  String? keyword;
 
   //Method cek query
   void queryall() async {
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   void navigateToDetail(MyNotes note, String title) async {
-    bool result =
+    bool? result =
         await Navigator.push(context, MaterialPageRoute(builder: (context) {
       return AddNotes(note, title);
     }));
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     print('Height is ${MediaQuery.of(context).size.height}');
     print('Width is ${MediaQuery.of(context).size.width}');
     if (noteList == null) {
-      noteList = List<MyNotes>();
+      noteList = [];
       updateListView();
     }
 
@@ -240,14 +240,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   padding:
                       EdgeInsets.symmetric(horizontal: 30.0, vertical: 7.0),
                   child: ButtonAnimationImplementation(
-                    title: noteList[index].title,
-                    body: noteList[index].body,
-                    tanggal: noteList[index].date,
+                    title: noteList![index].title,
+                    body: noteList![index].body,
+                    tanggal: noteList![index].date,
                     onTab: () {
                       ButtonAnimation.disableButton
                           ? print("Disable true")
                           : print("I'm pressed for edit");
-                      navigateToDetail(noteList[index], "Edit Note");
+                      navigateToDetail(noteList![index], "Edit Note");
                     },
                   ),
                 );

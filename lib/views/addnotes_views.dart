@@ -11,14 +11,14 @@ class AddNotes extends StatefulWidget {
 }
 
 class _AddNotesState extends State<AddNotes> {
-  String textHeader; //for Header
+  String? textHeader; //for Header
   _AddNotesState(this.note, this.textHeader);
 
   bool changeicon = true; //for icon
-  IconData icon;
+  IconData? icon;
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
-  MyNotes note; //for initstate
+  MyNotes? note; //for initstate
   DatabaseHelper helper = DatabaseHelper();
 
   void moveToLastScreen() {
@@ -27,7 +27,7 @@ class _AddNotesState extends State<AddNotes> {
 
   // void _showAlertDialog(String message) {
   //   AlertDialog alertDialog = AlertDialog(
-  
+
   //     content: Text(message),
   //   );
   //   showDialog(context: context, builder: (_) => alertDialog);
@@ -35,31 +35,32 @@ class _AddNotesState extends State<AddNotes> {
 
   // Update the title of Note object
   void updateTitle() {
-    note.title = titleController.text;
+    note!.title = titleController.text;
   }
 
   // Update the description of Note object
   void updateBody() {
-    note.body = bodyController.text;
+    note!.body = bodyController.text;
   }
 
   // Save data to database
   void _save() async {
     moveToLastScreen();
 
-    note.date = DateFormat.yMMMd().format(DateTime.now());
-    int result;
-    if (note.id != null) {
+    note!.date = DateFormat.yMMMd().format(DateTime.now());
+
+    int? result;
+    if (note!.id != null) {
       // Case 1: Update operation
-      result = await helper.updateNote(note);
+      result = await helper.updateNote(note!);
     } else {
       // Case 2: Insert Operation
-      result = await helper.insertNote(note);
+      result = await helper.insertNote(note!);
     }
 
     if (result != 0) {
       // Success
-      print( 'Note Saved Successfully');
+      print('Note Saved Successfully');
     } else {
       // Failure
       print('Problem Saving Note');
@@ -77,7 +78,7 @@ class _AddNotesState extends State<AddNotes> {
     // }
 
     // Case 2: User is trying to delete the old note that already has a valid ID.
-    int result = await helper.deleteNote(note.id);
+    int? result = await helper.deleteNote(note!.id!);
     if (result != 0) {
       print('Note Deleted Successfully');
     } else {
@@ -122,13 +123,13 @@ class _AddNotesState extends State<AddNotes> {
       ),
       backgroundColor: Color(0xFFEC564D),
     );
-    Scaffold.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
   Widget build(BuildContext context) {
-    titleController.text = note.title;
-    bodyController.text = note.body;
+    titleController.text = note!.title;
+    bodyController.text = note!.body;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -154,7 +155,7 @@ class _AddNotesState extends State<AddNotes> {
               ),
               //textHeader
               Center(
-                child: Text(textHeader,
+                child: Text(textHeader!,
                     style: GoogleFonts.lato(
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,

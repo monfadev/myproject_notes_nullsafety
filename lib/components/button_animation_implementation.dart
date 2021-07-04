@@ -1,13 +1,13 @@
 part of 'components.dart';
 
 class ButtonAnimationImplementation extends StatefulWidget {
-  final String title;
-  final String body;
-  final String tanggal;
-  final Function onTab;
+  final String? title;
+  final String? body;
+  final String? tanggal;
+  final Function() onTab;
 
   ButtonAnimationImplementation(
-      {Key key, this.title, this.body, this.tanggal, this.onTab})
+      {Key? key, this.title, this.body, this.tanggal, required this.onTab})
       : super(key: key);
   @override
   _ButtonAnimationImplementationState createState() =>
@@ -16,7 +16,7 @@ class ButtonAnimationImplementation extends StatefulWidget {
 
 class _ButtonAnimationImplementationState
     extends State<ButtonAnimationImplementation> {
-  List<ListModels> listAllModelsButton = [];
+  // List<ListModels> listAllModelsButton = [];
   bool isPressed = false;
   double _scale = 0.986;
 
@@ -56,7 +56,7 @@ class _ButtonAnimationImplementationState
                       children: [
                         //TODOS Adanya flexible text menjadi.......
                         Flexible(
-                          child: Text(widget.title,
+                          child: Text(widget.title!,
                               overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.lato(
                                   fontSize: 15.0,
@@ -65,7 +65,7 @@ class _ButtonAnimationImplementationState
                         ),
                         SizedBox(height: 8.0),
                         Flexible(
-                          child: Text(widget.body,
+                          child: Text(widget.body!,
                               overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.lato(
                                   fontSize: 12.0,
@@ -74,7 +74,7 @@ class _ButtonAnimationImplementationState
                         ),
                         SizedBox(height: 7.0),
                         Flexible(
-                          child: Text(widget.tanggal,
+                          child: Text(widget.tanggal!,
                               overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.lato(
                                   fontSize: 12.0,
@@ -98,7 +98,7 @@ class _ButtonAnimationImplementationState
                     children: [
                       //TODOS Adanya flexible text menjadi.......
                       Flexible(
-                        child: Text(widget.title,
+                        child: Text(widget.title!,
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.lato(
                                 fontSize: 15.0,
@@ -107,7 +107,7 @@ class _ButtonAnimationImplementationState
                       ),
                       SizedBox(height: 8.0),
                       Flexible(
-                        child: Text(widget.body,
+                        child: Text(widget.body!,
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.lato(
                                 fontSize: 12.0,
@@ -116,7 +116,7 @@ class _ButtonAnimationImplementationState
                       ),
                       SizedBox(height: 7.0),
                       Flexible(
-                        child: Text(widget.tanggal,
+                        child: Text(widget.tanggal!,
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.lato(
                                 fontSize: 12.0,
