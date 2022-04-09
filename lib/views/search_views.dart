@@ -71,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
                     return snapshot.hasData
                         ? SearchList(snapshot.data)
                         : Center(
-                            child: Text("Don't Have Notes..."),
+                            child: Text("Don't Have Notes...", style: TextStyle(color: Colors.black)),
                           );
                   },
                 ),

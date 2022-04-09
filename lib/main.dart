@@ -25,10 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'My Notes',
       theme: ThemeData(
-        primaryColorBrightness: Brightness.light,
         brightness: Brightness.light,
-        //TODOS accentColor for swipe list
-        accentColor: Colors.white,
       ),
       home: Home(),
     );
